@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvdly7l0l3odf"]
+
+[ext_resource type="Texture2D" uid="uid://chw814ujkanqg" path="res://icon.svg" id="1_pcpeh"]
+[ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_x6x8n"]
+[ext_resource type="PackedScene" uid="uid://co7r3gg4d76is" path="res://Scenes/Player/HUD.tscn" id="3_0wevr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdgvn"]
+size = Vector2(34, 33)
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_mask = 15
+script = ExtResource("1_x6x8n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_pcpeh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_hdgvn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+zoom = Vector2(0.5, 0.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("3_0wevr")]

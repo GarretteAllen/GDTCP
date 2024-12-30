@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0n3vw8lybd4r"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Tree/TreeT1.gd" id="1_5g1mc"]
+[ext_resource type="Texture2D" uid="uid://cowvnn1fclu2r" path="res://Assets/World/Overworld.png" id="1_7fc6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d017x"]
+size = Vector2(29, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk7qa"]
+size = Vector2(28, 28)
+
+[node name="Tree" type="Node2D"]
+script = ExtResource("1_5g1mc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_d017x")
+
+[node name="Tree" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_7fc6x")
+region_enabled = true
+region_rect = Rect2(81.6887, 255.567, 29.6145, 31.3849)
+
+[node name="Chopped" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(0, 3)
+texture = ExtResource("1_7fc6x")
+region_enabled = true
+region_rect = Rect2(496.775, 53.5522, 31.2301, 25.6708)
+
+[node name="HoverArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoverArea"]
+shape = SubResource("RectangleShape2D_kk7qa")
+debug_color = Color(0.854255, 0.342447, 0.366497, 0.42)
+
+[connection signal="mouse_entered" from="HoverArea" to="." method="_on_hover_area_mouse_entered"]
+[connection signal="mouse_exited" from="HoverArea" to="." method="_on_hover_area_mouse_exited"]

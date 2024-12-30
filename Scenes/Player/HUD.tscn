@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://co7r3gg4d76is"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Hud.gd" id="1_gn42x"]
+[ext_resource type="Texture2D" uid="uid://bxtanfonvvyop" path="res://Assets/World/objects.png" id="2_2vlt5"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gn42x")
+
+[node name="Command" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 354.0
+offset_bottom = 24.0
+
+[node name="Name" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 625.0
+offset_right = 331.0
+offset_bottom = 653.0
+
+[node name="Stats" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 981.0
+offset_top = 619.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HITPOINTS" type="Control" parent="Stats"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HitpointsSprite" type="Sprite2D" parent="Stats/HITPOINTS"]
+position = Vector2(150, 11)
+scale = Vector2(3.6, 3.55555)
+texture = ExtResource("2_2vlt5")
+region_enabled = true
+region_rect = Rect2(2.20584, 50.9849, 10.628, 9.81049)
+
+[node name="HITPOINTSLabel" type="RichTextLabel" parent="Stats/HITPOINTS"]
+layout_mode = 2
+offset_left = 141.0
+offset_top = -3.0
+offset_right = 169.0
+offset_bottom = 21.0
+text = "99
+"

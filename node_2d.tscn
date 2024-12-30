@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfkfkupa4id8u"]
+
+[ext_resource type="Texture2D" uid="uid://chw814ujkanqg" path="res://icon.svg" id="2_2hixt"]
+
+[sub_resource type="GDScript" id="GDScript_pg6yf"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 400
+
+var target : Vector2
+
+
+func _ready():
+	if Server.connected:
+		print(\"Spawning at saved position:\", position)
+		# get saved location here
+		
+func _input(event):
+	if event.is_action_pressed(&\"click\"):
+		target = get_global_mouse_position()
+		print(target)
+		
+func _physics_process(delta):
+	velocity = position.direction_to(target) * speed
+	if position.distance_to(target) > 10:
+		move_and_slide()
+	else:
+		velocity = Vector2.ZERO
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wvja"]
+size = Vector2(121, 121)
+
+[node name="Node2D" type="CharacterBody2D"]
+script = SubResource("GDScript_pg6yf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2hixt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_3wvja")
